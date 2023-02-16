@@ -1,21 +1,14 @@
 name: Build Image
 
-
 on:
   push:
-    branches: [main]
-
-# on:
-#   workflow_run:
-#     workflows: ["Django Tests CI"]
-#     types:
-#       - completed
+    branches: [apis-biographien]
 
 jobs:
   setup_workflow_env:
     runs-on: ubuntu-latest
     outputs:
-      image_tagged: apis-devops
+      image_tagged: apis-devops-biographien
       registry_root: ghcr.io/acdh-oeaw/
       default_port: "5000"
       APP_ROOT: "/"
@@ -77,101 +70,16 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-  deploy_sport_dev:
+  deploy_biographien_dev:
       needs: [setup_workflow_env, build_and_push_to_registry]
       uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy-cluster-2.yml@main
       secrets: inherit
       with:
         DOCKER_TAG: ${{ needs.setup_workflow_env.outputs.registry_root }}${{ needs.setup_workflow_env.outputs.image_tagged }}/${{ github.ref_name }}
-        APP_NAME: "apis-sport"
+        APP_NAME: "bio-dev"
         APP_ROOT: ${{ needs.setup_workflow_env.outputs.APP_ROOT }}
-        SERVICE_ID: "21078"
-        PUBLIC_URL: "https://apissport.acdh-dev.oeaw.ac.at"
+        SERVICE_ID: "17784"
+        PUBLIC_URL: "https://apis.acdh.oeaw.ac.at/"
         POSTGRES_ENABLED: ${{ needs.setup_workflow_env.outputs.POSTGRES_ENABLED == 'true'}}
-        environment: "Sport Development"
+        environment: "Biographien Development"
         default_port: "${{ needs.setup_workflow_env.outputs.default_port}}"
-  
-  deploy_ica_prod:
-      needs: [setup_workflow_env, build_and_push_to_registry]
-      uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy-cluster-2.yml@main
-      secrets: inherit
-      with:
-        DOCKER_TAG: ${{ needs.setup_workflow_env.outputs.registry_root }}${{ needs.setup_workflow_env.outputs.image_tagged }}/${{ github.ref_name }}
-        APP_NAME: "ica-prod"
-        APP_ROOT: ${{ needs.setup_workflow_env.outputs.APP_ROOT }}
-        SERVICE_ID: "17197"
-        PUBLIC_URL: "https://ica.acdh-dev.oeaw.ac.at"
-        POSTGRES_ENABLED: ${{ needs.setup_workflow_env.outputs.POSTGRES_ENABLED == 'true'}}
-        environment: "ICA Production"
-        default_port: "${{ needs.setup_workflow_env.outputs.default_port}}"
-
-  deploy_viecpro_dev:
-      needs: [setup_workflow_env, build_and_push_to_registry]
-      uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy-cluster-2.yml@main
-      secrets: inherit
-      with:
-        DOCKER_TAG: ${{ needs.setup_workflow_env.outputs.registry_root }}${{ needs.setup_workflow_env.outputs.image_tagged }}/${{ github.ref_name }}
-        APP_NAME: "viecpro-dev"
-        APP_ROOT: ${{ needs.setup_workflow_env.outputs.APP_ROOT }}
-        SERVICE_ID: "19806"
-        PUBLIC_URL: "https://viecpro-dev.acdh-dev.oeaw.ac.at"
-        POSTGRES_ENABLED: ${{ needs.setup_workflow_env.outputs.POSTGRES_ENABLED == 'true'}}
-        environment: "VieCPro Development"
-        default_port: "${{ needs.setup_workflow_env.outputs.default_port}}"
-  
-  deploy_pmb_prod:
-      needs: [setup_workflow_env, build_and_push_to_registry]
-      uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy-cluster-2.yml@main
-      secrets: inherit
-      with:
-        DOCKER_TAG: ${{ needs.setup_workflow_env.outputs.registry_root }}${{ needs.setup_workflow_env.outputs.image_tagged }}/${{ github.ref_name }}
-        APP_NAME: "pmb-prod"
-        APP_ROOT: ${{ needs.setup_workflow_env.outputs.APP_ROOT }}
-        SERVICE_ID: "17207"
-        PUBLIC_URL: "https://pmb.acdh.oeaw.ac.at"
-        POSTGRES_ENABLED: ${{ needs.setup_workflow_env.outputs.POSTGRES_ENABLED == 'true'}}
-        environment: "PMB Production"
-        default_port: "${{ needs.setup_workflow_env.outputs.default_port}}"
-  
-  deploy_viecpro_prod:
-      needs: [setup_workflow_env, build_and_push_to_registry]
-      uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy-cluster-2.yml@main
-      secrets: inherit
-      with:
-        DOCKER_TAG: ${{ needs.setup_workflow_env.outputs.registry_root }}${{ needs.setup_workflow_env.outputs.image_tagged }}/${{ github.ref_name }}
-        APP_NAME: "viecpro-prod"
-        APP_ROOT: ${{ needs.setup_workflow_env.outputs.APP_ROOT }}
-        SERVICE_ID: "18210"
-        PUBLIC_URL: "https://viecpro.acdh-dev.oeaw.ac.at"
-        POSTGRES_ENABLED: ${{ needs.setup_workflow_env.outputs.POSTGRES_ENABLED == 'true'}}
-        environment: "VieCPro Production"
-        default_port: "${{ needs.setup_workflow_env.outputs.default_port}}"
-  
-  deploy_mpr_prod:
-      needs: [setup_workflow_env, build_and_push_to_registry]
-      uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy-cluster-2.yml@main
-      secrets: inherit
-      with:
-        DOCKER_TAG: ${{ needs.setup_workflow_env.outputs.registry_root }}${{ needs.setup_workflow_env.outputs.image_tagged }}/${{ github.ref_name }}
-        APP_NAME: "mpr-prod"
-        APP_ROOT: ${{ needs.setup_workflow_env.outputs.APP_ROOT }}
-        SERVICE_ID: "17201"
-        PUBLIC_URL: "https://mpr.acdh.oeaw.ac.at"
-        POSTGRES_ENABLED: ${{ needs.setup_workflow_env.outputs.POSTGRES_ENABLED == 'true'}}
-        environment: "MPR Production"
-        default_port: "${{ needs.setup_workflow_env.outputs.default_port}}"
-  
-  deploy_mpr_dev:
-      needs: [setup_workflow_env, build_and_push_to_registry]
-      uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy-cluster-2.yml@main
-      secrets: inherit
-      with:
-        DOCKER_TAG: ${{ needs.setup_workflow_env.outputs.registry_root }}${{ needs.setup_workflow_env.outputs.image_tagged }}/${{ github.ref_name }}
-        APP_NAME: "mpr-dev"
-        APP_ROOT: ${{ needs.setup_workflow_env.outputs.APP_ROOT }}
-        SERVICE_ID: "12919"
-        PUBLIC_URL: "https://mpr.acdh-dev.oeaw.ac.at"
-        POSTGRES_ENABLED: ${{ needs.setup_workflow_env.outputs.POSTGRES_ENABLED == 'true'}}
-        environment: "MPR Development"
-        default_port: "${{ needs.setup_workflow_env.outputs.default_port}}"
-  

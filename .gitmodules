@@ -1,3 +1,6 @@
 [submodule "apis_core_submodule"]
 	path = apis-core
 	url = ../apis-core.git
+[submodule "theme"]
+	path = apis-biographien-theme
+	url = https://github.com/acdh-oeaw/apis-biographien-theme/
