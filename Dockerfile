@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.11
 #RUN addgroup --system app && adduser --system --group app
 ARG USERNAME=app
 ARG USER_UID=1000
@@ -12,6 +12,7 @@ WORKDIR /app/
 # Prevents Python from writing .pyc files to disk
 ENV PYTHONDONTWRITEBYTECODE 1
 
+RUN apt update && apt install -y gdal-bin
 # ensures that the python output is sent straight to terminal (e.g. your container log)
 # without being first buffered and that you can see the output of your application (e.g. django logs)
 # in real time. Equivalent to python -u: https://docs.python.org/3/using/cmdline.html#cmdoption-u

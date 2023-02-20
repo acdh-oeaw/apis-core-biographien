@@ -3,4 +3,5 @@
 .idea
 apis/.DS_*
 .DS_*
+staticfiles/
 .venv
