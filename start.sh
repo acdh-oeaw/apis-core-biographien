@@ -3,9 +3,9 @@
 [[ -z $DJANGO_SETTINGS_MODULE ]] || poetry install --only ${DJANGO_SETTINGS_MODULE//./_}
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
-python manage.py migrate
-python manage.py collectstatic --noinput
 poetry install --only oebl
+#python manage.py migrate
+python manage.py collectstatic --noinput
 #ls /var/solr_new/paas_solr
 #python manage.py build_solr_schema --configure-directory /var/solr_new/paas_solr/conf --reload-core default
 if [[ -z "${DEVELOP}" ]]; then
