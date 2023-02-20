@@ -1,3 +1,6 @@
 [submodule "biographien-theme"]
 	path = apis-biographien-theme
 	url = https://github.com/acdh-oeaw/apis-biographien-theme.git
+[submodule "apis-biographien-theme"]
+	path = apis-biographien-theme
+	url = https://github.com/acdh-oeaw/apis-biographien-theme.git
