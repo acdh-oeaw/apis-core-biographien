@@ -7,23 +7,20 @@ license = "MIT"
 
 
 [tool.poetry.dependencies]
-python = ">=3.8.1,<3.9"
-whitenoise = "^5.2.0"
+python = ">=3.11.2, <3.12"
+whitenoise = "^6.3.0"
 sentry-sdk = "*"
-dj-database-url = "^0.5.0"
-gunicorn = "^20.0.4"
+dj-database-url = "^1.2.0"
+gunicorn = "^20.1.0"
 acdh-django-charts = "^0.5.3"
-django-allow-cidr = "^0.3.1"
-mysqlclient = "^2.0.3"
-django-extensions = "^3.1.3"
+django-allow-cidr = "^0.6.0"
+mysqlclient = "^2.1.1"
+django-extensions = "^3.2.1"
 django-csp = "^3.7"
-apis-bibsonomy = "~0.3"
-apis-highlighter = "~0.9"
-apis-import-project = "^0.3.4"
-dubletten-tool = "^0.1.11"
-apis-ampel = "^0.2.0"
-viecpro-vis = "0.1.10"
-apis-core = { path = "/app/apis-core/", develop = false }
+#viecpro-vis = "^0.1.10"
+pyzotero = "^1.5.5"
+apis-core = { path = "apis-core", develop = true }
+pysolr = "^3.9.0"
 
 [tool.poetry.group.dev]
 optional = true
@@ -35,6 +32,13 @@ jupyter = "^1.0.0"
 jupyter-tabnine = "^1.2.3"
 black = "^22.12.0"
 flake8 = "^6.0.0"
+
+[tool.poetry.group.oebl]
+optional = true
+
+[tool.poetry.group.oebl.dependencies]
+apis-biographien-theme = { path = "/app/apis-biographien-theme/", develop = false }
+apis-highlighter = { git = "https://github.com/acdh-oeaw/apis_highlighter.git", branch = "rh/fix/latest-dependency-versions" }
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

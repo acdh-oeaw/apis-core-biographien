@@ -15,8 +15,8 @@ from typing import Dict, Any
 
 # We fall back to a DEFAULT_SECRET_KEY, but you should
 # override this using an environment variable!
-DEFAULT_SECRET_KEY = 'a+nkut46lzzg_=ul)zrs29$u_6^*)2by2mjmwn)tqlgw)_at&l'
-SECRET_KEY = os.environ.get('SECRET_KEY', DEFAULT_SECRET_KEY)
+DEFAULT_SECRET_KEY = "a+nkut46lzzg_=ul)zrs29$u_6^*)2by2mjmwn)tqlgw)_at&l"
+SECRET_KEY = os.environ.get("SECRET_KEY", DEFAULT_SECRET_KEY)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(
@@ -63,7 +63,6 @@ PROJECT_DEFAULT_MD = {
 
 INSTALLED_APPS = [
     "dal",
-    # 'corsheaders',
     "dal_select2",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -108,11 +107,27 @@ SPECTACULAR_SETTINGS: Dict[str, Any] = {
 }
 
 
-CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'", "data: 'unsafe-eval'", 'cdnjs.cloudflare.com', 'cdn.jsdelivr.net', 'fonts.googleapis.com', 
-                    'ajax.googleapis.com', 'cdn.rawgit.com', "*.acdh.oeaw.ac.at", "unpkg.com", "fonts.gstatic.com", 
-                    "cdn.datatables.net", "code.highcharts.com", "*.acdh-dev.oeaw.ac.at", "*.acdh.oeaw.ac.at",
-                    "openstreetmap.org", "*.openstreetmap.org")
-CSP_FRAME_SRC = ('sennierer.github.io',)
+CSP_DEFAULT_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    "data: 'unsafe-eval'",
+    "cdnjs.cloudflare.com",
+    "cdn.jsdelivr.net",
+    "fonts.googleapis.com",
+    "ajax.googleapis.com",
+    "cdn.rawgit.com",
+    "*.acdh.oeaw.ac.at",
+    "unpkg.com",
+    "fonts.gstatic.com",
+    "cdn.datatables.net",
+    "code.highcharts.com",
+    "*.acdh-dev.oeaw.ac.at",
+    "*.acdh.oeaw.ac.at",
+    "openstreetmap.org",
+    "*.openstreetmap.org",
+    "*.placeholder.com",
+)
+CSP_FRAME_SRC = ("sennierer.github.io",)
 
 CRISPY_TEMPLATE_PACK = "bootstrap3"
 
@@ -132,7 +147,7 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_FILTER_BACKENDS": (
         "django_filters.rest_framework.DjangoFilterBackend",
-        #"drf_spectacular.contrib.django_filters.DjangoFilterBackend",
+        # "drf_spectacular.contrib.django_filters.DjangoFilterBackend",
     ),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
@@ -282,7 +297,6 @@ APIS_RELATIONS_FILTER_EXCLUDE = [
 ]
 
 
-
 APIS_RELATIONS = {
     "list_filters": [("relation_type",)],
     "search": ["relation_type__name"],
@@ -295,9 +309,13 @@ APIS_RELATIONS = {
             "related_person__first_name",
             "related_place__name",
         ],
-       # "include": ["related_place"], use include statement to set a list of filters
+        # "include": ["related_place"], use include statement to set a list of filters
         "list_filters": [("relation_type",), ("related_person",), ("related_place",)],
-        "exclude": ["related_person__first_name", "related_place__lng", "related_place__lat"]
+        "exclude": [
+            "related_person__first_name",
+            "related_place__lng",
+            "related_place__lat",
+        ],
     },
     "PersonInstitution": {
         "labels": ["related_person", "related_institution", "relation_type"],
@@ -311,8 +329,8 @@ APIS_RELATIONS = {
             ("relation_type",),
             ("related_person",),
             ("related_institution",),
-            ],
-        "exclude": ["related_person__first_name"]
+        ],
+        "exclude": ["related_person__first_name"],
     },
     "PersonEvent": {
         "labels": ["related_person", "related_event", "relation_type"],
@@ -323,7 +341,7 @@ APIS_RELATIONS = {
             "related_event__name",
         ],
         "list_filters": [("relation_type",), ("related_person",), ("related_event",)],
-        "exclude": ["related_person__first_name"]
+        "exclude": ["related_person__first_name"],
     },
     "PersonWork": {
         "labels": ["related_person", "related_work", "relation_type"],
@@ -334,7 +352,7 @@ APIS_RELATIONS = {
             "related_work__name",
         ],
         "list_filters": [("relation_type",), ("related_person",), ("related_work",)],
-        "exclude": ["related_person__first_name"]
+        "exclude": ["related_person__first_name"],
     },
     "PersonPerson": {
         "labels": ["related_personA", "related_personB", "relation_type"],
@@ -350,7 +368,7 @@ APIS_RELATIONS = {
             ("related_personA",),
             ("related_personB",),
         ],
-        "exclude": ["related_person__first_name"]
+        "exclude": ["related_person__first_name"],
     },
     "InstitutionPlace": {
         "labels": ["related_institution", "related_place", "relation_type"],
@@ -364,7 +382,7 @@ APIS_RELATIONS = {
             ("related_institution",),
             ("related_place",),
         ],
-        "exclude": ["related_place__lat", "related_place__lng"]
+        "exclude": ["related_place__lat", "related_place__lng"],
     },
     "InstitutionWork": {
         "labels": ["related_institution", "related_work", "relation_type"],
@@ -409,13 +427,13 @@ APIS_RELATIONS = {
         "labels": ["related_work", "related_place", "relation_type"],
         "search": ["relation_type__name", "related_place__name", "related_work__name"],
         "list_filters": [("relation_type",), ("related_place",), ("related_work",)],
-        "exclude": ["related_place__lat", "related_place__lng"]
+        "exclude": ["related_place__lat", "related_place__lng"],
     },
     "PlaceEvent": {
         "labels": ["related_event", "related_place", "relation_type"],
         "search": ["relation_type__name", "related_place__name", "related_event__name"],
         "list_filters": [("relation_type",), ("related_place",), ("related_event",)],
-        "exclude": ["related_place__lat", "related_place__lng"]
+        "exclude": ["related_place__lat", "related_place__lng"],
     },
     "PlacePlace": {
         "labels": ["related_placeA", "related_placeB", "relation_type"],
@@ -425,7 +443,7 @@ APIS_RELATIONS = {
             "related_placeB__name",
         ],
         "list_filters": [("relation_type",), ("related_placeA",), ("related_placeB",)],
-        "exclude": ["related_place__lat", "related_place__lng"]
+        "exclude": ["related_place__lat", "related_place__lng"],
     },
     "EventWork": {
         "labels": ["related_event", "related_work", "relation_type"],
