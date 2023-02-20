@@ -44,6 +44,3 @@ apis-highlighter = { git = "https://github.com/acdh-oeaw/apis_highlighter.git", 
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.poetry.group.apis_settings_biographien]
-optional = true
-dependencies = {'apis-biographien-theme' = { path = "theme" }}
