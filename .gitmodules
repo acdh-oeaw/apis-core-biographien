@@ -1,9 +1,3 @@
-[submodule "apis_core_submodule"]
-	path = apis-core
-	url = ../apis-core.git
 [submodule "biographien-theme"]
 	path = apis-biographien-theme
-	url = git@github.com:acdh-oeaw/apis-biographien-theme.git
-[submodule "apis-highlighter"]
-	path = apis_highlighter
-	url = git@github.com:acdh-oeaw/apis_highlighter.git
+	url = ../apis-biographien-theme.git
