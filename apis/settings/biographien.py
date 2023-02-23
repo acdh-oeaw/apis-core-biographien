@@ -19,6 +19,9 @@ ALLOWED_HOSTS = [
 
 DEV_VERSION = os.environ.get("APIS_DEV_VERSION", True)
 
+BIRTH_REL_ID = 595
+DEATH_REL_ID = 596
+
 
 INSTALLED_APPS += [
     "apis_highlighter",
