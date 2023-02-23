@@ -19,8 +19,14 @@ ALLOWED_HOSTS = [
 
 DEV_VERSION = os.environ.get("APIS_DEV_VERSION", True)
 
-INSTALLED_APPS += ["apis_highlighter", "corsheaders", "theme", "haystack", "leaflet"]
 
+INSTALLED_APPS += [
+    "apis_highlighter",
+    "haystack",
+    "theme",
+    "leaflet",
+    "sass_processor",
+]
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
@@ -117,6 +123,18 @@ sentry_sdk.init(
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True,
 )
+
+SASS_ROOT = os.path.join(BASE_DIR, "theme", "static", "theme", "scss", "fundament_oebl")
+
+SASS_PROCESSOR_ROOT = SASS_ROOT
+
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "sass_processor.finders.CssFinder",
+]
+
+COMPRESS_PRECOMPILERS = (("text/x-scss", "django_libsass.SassCompiler"),)
 
 PROJECT_NAME = "apis"
 ROBOTS_TXT_FOLDER = os.path.join(BASE_DIR, "robots_template")
