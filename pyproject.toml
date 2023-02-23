@@ -41,6 +41,6 @@ apis-biographien-theme = { path = "/app/apis-biographien-theme/", develop = fals
 apis-highlighter = { git = "https://github.com/acdh-oeaw/apis_highlighter.git", branch = "rh/fix/latest-dependency-versions" }
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=1.0.0a3"]
 build-backend = "poetry.core.masonry.api"
 
