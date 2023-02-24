@@ -102,7 +102,7 @@ REST_FRAMEWORK["DEFAULT_PERMISSION_CLASSES"] = (
     "rest_framework.permissions.IsAuthenticatedOrReadOnly",
 )
 
-CSRF_TRUSTED_ORIGINS = ["apis.acdh.oeaw.ac.at"]
+CSRF_TRUSTED_ORIGINS = ["https://apis.acdh.oeaw.ac.at"]
 
 APIS_RELATIONS_FILTER_EXCLUDE += ["annotation", "annotation_set_relation"]
 
