@@ -83,8 +83,8 @@ APIS_SHOW_ONLY_PUBLISHED = True
 HAYSTACK_CONNECTIONS = {
     "default": {
         "ENGINE": "haystack.backends.solr_backend.SolrEngine",
-        "URL": "http://apis_solr:8983/solr/apis_solr",
-        "ADMIN_URL": "http://apis_solr:8983/solr/admin/cores",
+        "URL": "http://apis-solr:8983/solr/apis_solr",
+        "ADMIN_URL": "http://apis-solr:8983/solr/admin/cores",
     }
 }
 
