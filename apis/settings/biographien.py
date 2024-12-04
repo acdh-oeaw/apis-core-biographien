@@ -45,7 +45,8 @@ CSP_DEFAULT_SRC = (
 )
 
 CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
-    "unpkg.com",
+    "https://unpkg.com",
+    "'unsafe-eval'",
 )
 
 
