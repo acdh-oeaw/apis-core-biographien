@@ -17,6 +17,38 @@ ALLOWED_HOSTS = [
     "*",
 ]
 
+INSTALLED_APPS += [
+    'csp',
+    # other apps
+]
+
+
+CSP_DEFAULT_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    "data: 'unsafe-eval'",
+    "cdnjs.cloudflare.com",
+    "cdn.jsdelivr.net",
+    "fonts.googleapis.com",
+    "ajax.googleapis.com",
+    "cdn.rawgit.com",
+    "*.acdh.oeaw.ac.at",
+    "unpkg.com",
+    "fonts.gstatic.com",
+    "cdn.datatables.net",
+    "code.highcharts.com",
+    "*.acdh-dev.oeaw.ac.at",
+    "*.acdh.oeaw.ac.at",
+    "openstreetmap.org",
+    "*.openstreetmap.org",
+    "*.placeholder.com",
+)
+
+CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
+    "unpkg.com",
+)
+
+
 DEV_VERSION = os.environ.get("APIS_DEV_VERSION", True)
 
 BIRTH_REL_ID = 595
